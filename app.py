@@ -22,6 +22,10 @@ class NewprojectApp:
         self.account_value.pack(side="top")
         self.frame1.pack(side="top")
         combobox1.bind('<<ComboboxSelected>>', self.on_select)
+        add_money = ttk.Entry(self.frame1)
+        add_money.pack(side="top")
+        add_money_confirm = ttk.Button(self.frame1)
+        add_money_confirm.pack(side="top")
 
 
         # Main widget

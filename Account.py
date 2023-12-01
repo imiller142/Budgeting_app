@@ -14,6 +14,9 @@ class Account:
         self.name = name
         self.value = value
 
+    def pickle(self):
+        with open(('C:\\Users\\ismiller\\Documents\\Coding\\Python\\Budgeting_app\\pickles' + '\\' + self.name + '.pickle'), 'wb') as f:
+            pickle.dump(self, f)
 
 
     def add_money(self, value):
@@ -21,23 +24,20 @@ class Account:
         self.value += value
 
         print("{} account now contains {}".format(self.name, self.value))
-        return self.value
             #create an intial account with a value defaulting to 0
 
+def main():
 
-savings = Account('Savings', 1200)
-checking = Account('Checking', 10)
+    savings = Account('Savings', 1200)
+    checking = Account('Checking', 10)
 
-accounts = [savings, checking]
-
-accounts_pickle = {}
-
-for item in accounts:
-    accounts_pickle[item.name] = item
+    savings.pickle()
 
 
-with open(os.path.join(here,'accounts.bin'), 'wb') as f:
-    pickle.dump(accounts_pickle, f)
+if __name__ == '__main__':
+    main()
+
+
 
 
 

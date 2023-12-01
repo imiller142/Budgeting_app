@@ -1,8 +1,14 @@
 ﻿import pickle
 
-from Account import Account as a
+from Account import Account
 
-with open('accounts.bin', 'rb') as f:
-    accounts = pickle.load(f)
+with open('pickles\Savings.pickle', 'rb') as f:
+    Savings = pickle.load(f)
+
+
+Savings.add_money(20)
+
+Savings.pickle()
+
 
 
