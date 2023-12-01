@@ -1,5 +1,8 @@
-﻿from Account import Account as a
+﻿import pickle
 
-banking = a('Savings', 1200)
+from Account import Account as a
 
-banking.add_money(250)
+with open('accounts.bin', 'rb') as f:
+    accounts = pickle.load(f)
+
+
