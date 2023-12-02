@@ -1,10 +1,6 @@
-﻿import os.path
-import json
-import pickle
+﻿
+import shelve
 
-import os
-
-here = os.path.dirname(os.path.abspath(__file__))
 class Account:
 #used to initialize account can be used as template for variations in accounts.
     def __init__(self, name, value = 0):
@@ -14,29 +10,58 @@ class Account:
         self.name = name
         self.value = value
 
-    def pickle(self):
-        with open(('C:\\Users\\ismiller\\Documents\\Coding\\Python\\Budgeting_app\\pickles' + '\\' + self.name + '.pickle'), 'wb') as f:
-            pickle.dump(self, f)
+    def update(self):
+        data = {self.name: self}
+        with shelve.open(('data\\accountsDB')) as db:
+            db.update(data)
+            print('Added account {} to the database'.format(self.name))
+            print('Current accounts in the database are\n')
+            for key, val in db.items():
+                print(key)
 
 
-    def add_money(self, value):
-        #function to add money to the account
-        self.value += value
 
-        print("{} account now contains {}".format(self.name, self.value))
-            #create an intial account with a value defaulting to 0
+class Debt(Account):
 
-def main():
+    def __init__(self, name, value=0, intrest_rate = 0):
+        super().__init__(name, value)
+        self.intest_rate = intrest_rate
 
-    savings = Account('Savings', 1200)
-    checking = Account('Checking', 10)
+class Asset(Account):
+    
+    def __init__(self, name, value = 0, intrest_rate = 0):
+        super().__init(name, value)
+        self.intrest_rate = intrest_rate
 
-    savings.pickle()
+
+
+
+
+
+
+
+
+
+
+
+'''def main():
+    creating = True
+    while creating == True:
+        current_account = input("What account would you like to create?")
+        current_value = input("What is the value of this account?")
+        current_account = Account(current_account, current_value)
+        current_account.update()
+
+        check = input('Would you like to create another account? Y/N')
+        if check.upper == 'Y':
+            continue
+        else:
+            creating = False
 
 
 if __name__ == '__main__':
     main()
-
+'''
 
 
 
