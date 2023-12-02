@@ -1,7 +1,5 @@
 ﻿import shelve
-import account
-
-
+import tools.account as account
 
 def create_account():
     account_name = input("what is the name of the account are you creating?")
@@ -11,17 +9,15 @@ def create_account():
     if account_type == 'd':
         intrest_rate = input("what is the intrest rate on this account?")
         account_name = account.Debt(account_name, account_value, intrest_rate)
-        account_name.update()
     else:
-        account_name = account.Account(account_name, account_value)
-        account_name.update()
+        account_name = account.Asset(account_name, account_value)
+    return account_name
 
 
-def load_accounts():
-
+def store(obj):
     with shelve.open('data\\accountsDB') as db:
-        data = dict(db)
-    return data
+        db[obj.name] = obj
+
 
 
 def list_accounts():
@@ -31,5 +27,3 @@ def list_accounts():
         for key,val in db.items():
             print(key, val.value)
             
-
-

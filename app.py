@@ -4,14 +4,14 @@ import tkinter.ttk as ttk
 import shelve
 
 
+import tools.account as account
+import tools.account_load as load
 
-import account_functions as func
-import account 
 
 
 class NewprojectApp:
     def __init__(self, master=None):
-        data_load = func.load_accounts()
+        data_load = load.load_accounts()
         self.box_values = list(data_load.keys())
         print(self.box_values)
         # build ui
