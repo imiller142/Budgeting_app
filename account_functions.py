@@ -14,6 +14,11 @@ def create_account():
     return account_name
 
 
+def quick_create(name, value):
+
+    acct = account.Account(name, value)
+    return acct
+
 def store(obj):
     with shelve.open('data\\accountsDB') as db:
         db[obj.name] = obj
