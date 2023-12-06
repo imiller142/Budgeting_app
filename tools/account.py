@@ -10,14 +10,6 @@ class Account:
         self.name = name
         self.value = value
 
-    def update(self):
-        data = {self.name: self}
-        with shelve.open(('data\\accountsDB')) as db:
-            db.update(data)
-            print('Added account {} to the database'.format(self.name))
-            print('Current accounts in the database are\n')
-            for key, val in db.items():
-                print(key)
 
 
 
@@ -28,9 +20,9 @@ class Debt(Account):
         self.intest_rate = intrest_rate
 
 class Asset(Account):
-    
+
     def __init__(self, name, value = 0, intrest_rate = 0):
-        super().__init(name, value)
+        super().__init__(name, value)
         self.intrest_rate = intrest_rate
 
 
